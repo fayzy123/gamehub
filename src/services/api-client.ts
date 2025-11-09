@@ -6,11 +6,15 @@ export interface FetchResponse<T> {
     results: T[];
 }
 
+const baseURL = import.meta.env.VITE_RAWG_BASE_URL || "https://api.rawg.io/api";
+const apiKey = import.meta.env.VITE_RAWG_API_KEY;
+
+if (!apiKey) console.warn("[GameHub] Missing VITE_RAWG_API_KEY — RAWG requests will fail.");
+
 const axiosInstance = axios.create({
-    baseURL: 'https://api.rawg.io/api/',
-    params: {
-        key: '[INSERT_API_KEY_HERE]'
-    }
+    baseURL,
+    params: { key: apiKey },
+    timeout: 15000,
 })
 
 class APIClient<T> {
