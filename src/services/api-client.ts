@@ -6,7 +6,7 @@ export interface FetchResponse<T> {
     results: T[];
 }
 
-const baseURL = import.meta.env.VITE_RAWG_BASE_URL || "https://api.rawg.io/api";
+const baseURL = import.meta.env.VITE_RAWG_BASE_URL;
 const apiKey = import.meta.env.VITE_RAWG_API_KEY;
 
 if (!apiKey) console.warn("[GameHub] Missing VITE_RAWG_API_KEY — RAWG requests will fail.");
